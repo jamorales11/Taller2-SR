@@ -20,12 +20,34 @@ def hello_from_root():
 
 
 
-@app.route("/find_usuario/<id>", methods= ["POST", "GET"])
+@app.route("/get_usuario/<id>", methods= ["POST", "GET"])
 def get_usuario_df(id):
+    print(id)
+
+    return id
+
+
+@app.route("/get_tips_by_user/<id>", methods= ["POST", "GET"])
+def get_tips(id):
+    print(id)
+
+    return id
+    
+
+@app.route("/get_reviews_by_user/<id>", methods=["POST", "GET"])
+def get_reviews(id):
     print(request.json)
 
     return request.json
-    
+
+
+@app.route("/get_business/<id>", methods=["POST", "GET"])
+def get_business(id):
+    print(request.json)
+
+    return request.json
+
+
 
 
 @app.route("/get_recomendaciones/<id>", methods=["POST", "GET"])
