@@ -5,8 +5,25 @@ import pandas as pd
 import numpy as np
 import json
 
+import time
+
+from sklearn.model_selection import train_test_split
+from scipy import spatial
+
+from sklearn.metrics import pairwise_distances
+from scipy.spatial.distance import cosine
+from sklearn.feature_selection import chi2
+
+from sklearn.neighbors import KNeighborsClassifier
+
+from sklearn.metrics import precision_recall_fscore_support
+
+import User_User_RS as uu_rs
+import Content_Based_RS as cb_rs
+import preprocessing as pp
 
 
+df_review, df_business, df_users = pp.load_dataset()
 
 
 
