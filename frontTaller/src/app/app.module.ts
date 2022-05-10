@@ -1,34 +1,33 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserComponent } from './user/user.component';
-import { ReviewsListComponent } from './reviews-list/reviews-list.component';
-import { TipsListComponent } from './tips-list/tips-list.component';
-import { BusinessDetailComponent } from './business-detail/business-detail.component';
-import { RecomendacionesListComponent } from './recomendaciones-list/recomendaciones-list.component';
-import { NavbarComponent } from './navbar/navbar.component';
+import { UsuarioComponent } from './usuario/usuario.component';
+import { ListaRecomendacionesComponent } from './lista-recomendaciones/lista-recomendaciones.component';
+
+import { APP_ROUTING } from './app.routes';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UsuarioService } from './services/usuario.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    ReviewsListComponent,
-    TipsListComponent,
-    BusinessDetailComponent,
-    RecomendacionesListComponent,
-    NavbarComponent,
+    UsuarioComponent,
+    ListaRecomendacionesComponent,
     LoginComponent,
-    RegisterComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    HttpClientModule,
+    APP_ROUTING, 
+    FormsModule
   ],
-  providers: [],
+  providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
