@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { UsuarioService } from '../services/usuario.service';
 
 @Component({
   selector: 'app-lista-recomendaciones',
@@ -7,7 +9,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaRecomendacionesComponent implements OnInit {
 
-  constructor() { }
+  recomendaciones : any[] = [];
+
+  features : any[] = [];
+
+  usersImportantes : any[] = [];
+
+  htmlMapa : string = "";
+  safeHtml: SafeHtml= "";
+
+  constructor(private usuarioService: UsuarioService, private sanitizer: DomSanitizer) { 
+    this.usuarioService.get_recomendaciones_by_id(usuarioService.idLogged).subscribe((data:any)=>{
+      console.log(data);
+      console.log(data["recommendaciones"]);
+      let recomendaciones = data["recommendaciones"];
+      // this.usuarioService.get_mapa(recomendaciones).subscribe((data:any) =>{
+      //   console.log(data);
+
+      //   let mapa = document.createElement('div');
+
+      //   let index = data.indexOf("<script>")
+      //   let data2 = data.slice(index);
+
+      //   console.log(data2);
+
+
+      //   this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(data2);
+      //   console.log(this.safeHtml);
+
+
+      // });
+
+    });
+  }
 
   ngOnInit(): void {
   }

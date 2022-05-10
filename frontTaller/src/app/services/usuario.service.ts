@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 const API_URL = "http://localhost:5000/"
 
@@ -20,6 +21,16 @@ export class UsuarioService {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
+  httpOptions2 = {
+    headers: new HttpHeaders({
+        'Accept': 'text/html',
+        'Content-Type': 'application/json',
+        'responseType': 'text'
+    }),
+  };
+
+
+
 
   get_usuario(id:string){
     return this.http.get(API_URL + 'get_usuario/' + id);
@@ -27,6 +38,10 @@ export class UsuarioService {
 
   get_recomendaciones_by_id(id:string){
     return this.http.get(API_URL + 'get_recomendaciones/' + id);
+  }
+
+  get_mapa(recomendaciones: any[]) : Observable<any>{
+    return this.http.post(API_URL + 'get_mapa', recomendaciones, {'responseType': 'text'});
   }
 
   getLogStatus (){

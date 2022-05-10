@@ -13,6 +13,8 @@ export class UsuarioComponent implements OnInit {
 
   constructor(private usuarioService: UsuarioService) { 
     this.usuarioService.get_usuario(usuarioService.idLogged).subscribe((data:any) => {
+      console.log(data);
+
       console.log(data[0]);
 
       this.usuario.id = usuarioService.idLogged;

@@ -1,9 +1,12 @@
+from pyexpat import features
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import os
 import pandas as pd
 import numpy as np
 import json
+import folium
+
 
 import time
 
@@ -78,9 +81,41 @@ def get_business(id):
 def get_recomendaciones(id):
     print(id)
 
-    K_rec = 10
-    recommendations, imp_feat, imp_user = combine_recommendations(id, K_rec)
-    imp_user = df_users[df_users['user_id'].isin(imp_user)][['name', 'review_count', 'yelping_since']]
+    #K_rec = 10
+    #recommendations, imp_feat, imp_user = combine_recommendations(id, K_rec)
+    #imp_user = df_users[df_users['user_id'].isin(imp_user)][['name', 'review_count', 'yelping_since']]
 
+    recommendations = [{"name": "1", "latitude":4.713991455266561, "longitude": -74.0299935}, 
+                        {"name": "2", "latitude":4.705394596794235, "longitude": -74.03334089677242}]
+
+    imp_feat = [{"brand": "Ford"}, {"brand": "Ford"}, {"brand": "Ford"}]
+    imp_user = [{"model": "Mustang"}, {"model": "Mustang"}, {"model": "Mustang"}]
     print(recommendations)
-    return id
+    return jsonify(recommendaciones=recommendations, features= imp_feat, usuarios = imp_user)
+
+
+@app.route("/get_mapa", methods=["POST"])
+def get_mapa():
+    print(request.json)
+    recommendations = pd.DataFrame(data=request.json)
+    print(recommendations)
+
+
+    m = folium.Map(location=[recommendations['latitude'].mean(), recommendations['longitude'].mean()], \
+               tiles='Stamen Terrain'
+    )
+    for index, row in recommendations.iterrows():
+        name = row['name']
+        lat, long = row['latitude'], row['longitude']
+        folium.Marker([lat, long], popup=name, tooltip=name).add_to(m)
+
+    print(m)
+    m.save("index.html")
+
+    with open("index.html", "r") as file:
+        data = file.read().replace("\n", "")
+
+    print(type(data))
+    
+
+    return data
