@@ -22,7 +22,13 @@ export class ListaRecomendacionesComponent implements OnInit {
     this.usuarioService.get_recomendaciones_by_id(usuarioService.idLogged).subscribe((data:any)=>{
       console.log(data);
       console.log(data["recommendaciones"]);
-      let recomendaciones = data["recommendaciones"];
+      this.recomendaciones = data["recommendaciones"];
+      this.usersImportantes = data["usuarios"];
+      this.features = data["features"];
+
+      
+
+
       // this.usuarioService.get_mapa(recomendaciones).subscribe((data:any) =>{
       //   console.log(data);
 

@@ -88,7 +88,7 @@ def get_recomendaciones(id):
     recommendations = [{"name": "1", "latitude":4.713991455266561, "longitude": -74.0299935}, 
                         {"name": "2", "latitude":4.705394596794235, "longitude": -74.03334089677242}]
 
-    imp_feat = [{"brand": "Ford"}, {"brand": "Ford"}, {"brand": "Ford"}]
+    imp_feat = ["Ford", "Ford", "Ford"]
     imp_user = [{"model": "Mustang"}, {"model": "Mustang"}, {"model": "Mustang"}]
     print(recommendations)
     return jsonify(recommendaciones=recommendations, features= imp_feat, usuarios = imp_user)
