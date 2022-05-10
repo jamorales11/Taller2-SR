@@ -21,13 +21,13 @@ def load_dataset():
     dataset_path = 'dataset/'
     df_business = pd.read_json(dataset_path + 'business.json', lines=True)
     
-    size = 1000000
+    size = 200000
     df_reviews = pd.read_json(dataset_path + 'review.json', lines=True, 
                           dtype={'review_id':str,'user_id':str,
                                  'business_id':str,'stars':int,
                                  'date':str,'text':str,'useful':int,
                                  'funny':int,'cool':int},
-                          chunksize=size)
+                          chunksize=400000, nrows=4000000)
     reviews_list = []
     for df_review in tqdm(df_reviews):
         df_review = df_review.drop(['review_id','useful','funny','cool'], axis=1)
@@ -37,7 +37,7 @@ def load_dataset():
     df_review = pd.concat(reviews_list, ignore_index=True, join='outer', axis=0)
     
     df_users = pd.read_json(dataset_path + 'user.json', lines=True, 
-                          chunksize=size)
+                          chunksize=200000, nrows=2000000)
     users_list = []
     for df_user in tqdm(df_users):
         users_list.append(df_user[['user_id', 'name', 'review_count', 'yelping_since']])
