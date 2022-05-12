@@ -27,7 +27,7 @@ def load_dataset():
                                  'business_id':str,'stars':int,
                                  'date':str,'text':str,'useful':int,
                                  'funny':int,'cool':int},
-                          chunksize=5000, nrows=5000)
+                          chunksize=100000, nrows=100000)
     reviews_list = []
     for df_review in tqdm(df_reviews):
         df_review = df_review.drop(['review_id','useful','funny','cool'], axis=1)
