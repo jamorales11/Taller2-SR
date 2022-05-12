@@ -21,12 +21,12 @@ export class ListaRecomendacionesComponent implements OnInit {
   constructor(private usuarioService: UsuarioService, private sanitizer: DomSanitizer) { 
     this.usuarioService.get_recomendaciones_by_id(usuarioService.idLogged).subscribe((data:any)=>{
       console.log(data);
-      console.log(data["recommendaciones"]);
-      console.log(data["usuarios"]);
+      console.log(JSON.parse(data["recommendaciones"]));
+      console.log(JSON.parse(data["usuarios"]));
       console.log(data["features"]);
 
-      this.recomendaciones = data["recommendaciones"];
-      this.usersImportantes = data["usuarios"];
+      this.recomendaciones = JSON.parse(data["recommendaciones"]);
+      this.usersImportantes = JSON.parse(data["usuarios"]);
       this.features = data["features"];
 
       
