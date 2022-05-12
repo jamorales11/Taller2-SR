@@ -22,6 +22,9 @@ export class ListaRecomendacionesComponent implements OnInit {
     this.usuarioService.get_recomendaciones_by_id(usuarioService.idLogged).subscribe((data:any)=>{
       console.log(data);
       console.log(data["recommendaciones"]);
+      console.log(data["usuarios"]);
+      console.log(data["features"]);
+
       this.recomendaciones = data["recommendaciones"];
       this.usersImportantes = data["usuarios"];
       this.features = data["features"];
