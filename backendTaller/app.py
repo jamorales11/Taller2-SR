@@ -27,6 +27,7 @@ import preprocessing as pp
 
 
 df_review, df_business, df_users = pp.load_dataset()
+print(df_review["user_id"].value_counts())
 
 def combine_recommendations(user_id, K_rec):
     K_sim_user = 10
