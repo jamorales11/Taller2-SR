@@ -37,7 +37,7 @@ def load_dataset():
     df_review = pd.concat(reviews_list, ignore_index=True, join='outer', axis=0)
     
     df_users = pd.read_json(dataset_path + 'user.json', lines=True, 
-                          chunksize=200000, nrows=2000000)
+                          chunksize=200000, nrows=1000000)
     users_list = []
     for df_user in tqdm(df_users):
         users_list.append(df_user[['user_id', 'name', 'review_count', 'yelping_since']])
