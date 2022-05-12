@@ -92,7 +92,7 @@ def get_recomendaciones(id):
     #imp_feat = ["Ford", "Ford", "Ford"]
     #imp_user = [{"model": "Mustang"}, {"model": "Mustang"}, {"model": "Mustang"}]
     print(recommendations)
-    return jsonify(recommendaciones=recommendations.to_json(orient="records"), features= imp_feat.to_json(orient="records"), usuarios = imp_user.to_json(orient="records"))
+    return jsonify(recommendaciones=recommendations.to_json(orient="records"), features= imp_feat, usuarios = imp_user.to_json(orient="records"))
 
 
 @app.route("/get_mapa", methods=["POST"])
