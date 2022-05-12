@@ -81,15 +81,15 @@ def get_business(id):
 def get_recomendaciones(id):
     print(id)
 
-    #K_rec = 10
-    #recommendations, imp_feat, imp_user = combine_recommendations(id, K_rec)
-    #imp_user = df_users[df_users['user_id'].isin(imp_user)][['name', 'review_count', 'yelping_since']]
+    K_rec = 10
+    recommendations, imp_feat, imp_user = combine_recommendations(id, K_rec)
+    imp_user = df_users[df_users['user_id'].isin(imp_user)][['name', 'review_count', 'yelping_since']]
 
-    recommendations = [{"name": "1", "latitude":4.713991455266561, "longitude": -74.0299935}, 
-                        {"name": "2", "latitude":4.705394596794235, "longitude": -74.03334089677242}]
+    #recommendations = [{"name": "1", "latitude":4.713991455266561, "longitude": -74.0299935}, 
+                        #{"name": "2", "latitude":4.705394596794235, "longitude": -74.03334089677242}]
 
-    imp_feat = ["Ford", "Ford", "Ford"]
-    imp_user = [{"model": "Mustang"}, {"model": "Mustang"}, {"model": "Mustang"}]
+    #imp_feat = ["Ford", "Ford", "Ford"]
+    #imp_user = [{"model": "Mustang"}, {"model": "Mustang"}, {"model": "Mustang"}]
     print(recommendations)
     return jsonify(recommendaciones=recommendations, features= imp_feat, usuarios = imp_user)
 

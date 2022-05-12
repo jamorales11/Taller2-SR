@@ -11,4 +11,6 @@ business.json
 user.json
 review.json
 
+df_business_transformed.pkl
+
 __pycache__/
