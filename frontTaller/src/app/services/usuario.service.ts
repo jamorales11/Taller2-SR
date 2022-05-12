@@ -37,7 +37,7 @@ export class UsuarioService {
   }
 
   get_recomendaciones_by_id(id:string){
-    return this.http.get(API_URL + 'get_recomendaciones/' + id);
+    return this.http.get(API_URL + 'get_recomendaciones/' + id, this.httpOptions);
   }
 
   get_mapa(recomendaciones: any[]) : Observable<any>{
