@@ -54,7 +54,7 @@
     </div>
 </div>
 
-<google-map [center]="location" [zoom]="10">
+<google-map [center]="location" [zoom]="10" width="auto" height="600">
   <map-marker *ngFor="let recomendacion of recomendaciones"
   [position]="{lat: recomendacion['latitude'], lng: recomendacion['longitude']}"
   [label]="{color:'black',text:recomendacion['name']}">
