@@ -41,6 +41,9 @@ def generate_recommendations(df_review, df_reviews_user, df_business, df_non_see
             den = sum(sample['similarity'])
             ri = ra + num/den
             df_recommendations.loc[df_recommendations['item']==unseen_item, ['prediction']] = ri
+    
+    print("List",users)
+
     df_recommendations = df_recommendations.merge(df_business, left_on='item', right_on='business_id', how='left')
     df_recommendations = df_recommendations.sort_values(by='prediction', ascending=False)
     df_recommendations = df_recommendations[['name', 'address', 'city', 'state', 'prediction', 'latitude', 'longitude']]
