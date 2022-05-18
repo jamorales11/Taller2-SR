@@ -11,6 +11,8 @@ import { APP_ROUTING } from './app.routes';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UsuarioService } from './services/usuario.service';
+import { MapaComponent } from './mapa/mapa.component';
+import {GoogleMapsModule} from '@angular/google-maps';
 
 
 @NgModule({
@@ -20,12 +22,14 @@ import { UsuarioService } from './services/usuario.service';
     ListaRecomendacionesComponent,
     LoginComponent,
     NavbarComponent,
+    MapaComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     APP_ROUTING, 
-    FormsModule
+    FormsModule,
+    GoogleMapsModule
   ],
   providers: [UsuarioService],
   bootstrap: [AppComponent]

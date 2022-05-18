@@ -15,8 +15,13 @@ export class ListaRecomendacionesComponent implements OnInit {
 
   usersImportantes : any[] = [];
 
-  htmlMapa : string = "";
-  safeHtml: SafeHtml= "";
+
+  location = {lat:0, lng:0};
+  
+  label = {
+    color:"black",
+    text:"Marcador"
+  };
 
   constructor(private usuarioService: UsuarioService, private sanitizer: DomSanitizer) { 
     this.usuarioService.get_recomendaciones_by_id(usuarioService.idLogged).subscribe((data:any)=>{
@@ -30,24 +35,45 @@ export class ListaRecomendacionesComponent implements OnInit {
       this.features = data["features"];
 
       
+      //Para generar el mapa
+
+      let lat_min = Number.MAX_SAFE_INTEGER;
+      let lat_max = Number.MIN_SAFE_INTEGER;
+      let lng_min = Number.MAX_SAFE_INTEGER;
+      let lng_max = Number.MIN_SAFE_INTEGER; 
+
+      this.recomendaciones.forEach(element => {
+          if(element["latitude"] > lat_max ){
+            lat_max = element["latitude"];
+          }
+
+          if(element["latitude"] < lat_min ){
+            lat_min = element["latitude"];
+          }
+
+          if(element["longitude"] > lng_max ){
+            lng_max = element["longitude"];
+          }
+
+          if(element["longitude"] < lng_min ){
+            lng_min = element["longitude"];
+          }
+        });
+
+      let latCenter = (lat_max + lat_min) / 2.0;
+      let lngCenter = (lng_max + lng_min) / 2.0;
+
+      console.log(lat_max);
+      console.log(lat_min);
+      console.log(latCenter);
+
+      console.log(lng_max);
+      console.log(lng_min);
+      console.log(lngCenter);
 
 
-      // this.usuarioService.get_mapa(recomendaciones).subscribe((data:any) =>{
-      //   console.log(data);
 
-      //   let mapa = document.createElement('div');
-
-      //   let index = data.indexOf("<script>")
-      //   let data2 = data.slice(index);
-
-      //   console.log(data2);
-
-
-      //   this.safeHtml = this.sanitizer.bypassSecurityTrustHtml(data2);
-      //   console.log(this.safeHtml);
-
-
-      // });
+      this.location = { lat: latCenter, lng: lngCenter};
 
     });
   }

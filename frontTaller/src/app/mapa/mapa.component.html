@@ -1,0 +1,6 @@
+<google-map [center]="location" [zoom]="10">
+    <map-marker *ngFor="let recomendacion of recomendaciones2"
+    [position]="{lat: recomendacion['latitude'], lng: recomendacion['longitude']}"
+    [label]="{color:'black',text:recomendacion['name']}">
+    </map-marker>
+</google-map>
