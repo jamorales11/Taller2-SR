@@ -86,13 +86,15 @@ def get_recomendaciones(id):
     recommendations, imp_feat, imp_user = combine_recommendations(id, K_rec)
     imp_user = df_users[df_users['user_id'].isin(imp_user)][['name', 'review_count', 'yelping_since']]
 
+    users_items = df_review[df_review['user_id'] == 'I1JMdW0zOvn0r4w3lzJ3YQ'][['name', 'business_id', 'latitude', 'longitude']]
+
     #recommendations = [{"name": "1", "latitude":4.713991455266561, "longitude": -74.0299935}, 
                         #{"name": "2", "latitude":4.705394596794235, "longitude": -74.03334089677242}]
 
     #imp_feat = ["Ford", "Ford", "Ford"]
     #imp_user = [{"model": "Mustang"}, {"model": "Mustang"}, {"model": "Mustang"}]
     print(recommendations)
-    return jsonify(recommendaciones=recommendations.to_json(orient="records"), features= imp_feat, usuarios = imp_user.to_json(orient="records"))
+    return jsonify(recommendaciones=recommendations.to_json(orient="records"), features= imp_feat, usuarios = imp_user.to_json(orient="records"), users_items = users_items.to_json(orient="records"))
 
 
 @app.route("/get_mapa", methods=["POST"])
