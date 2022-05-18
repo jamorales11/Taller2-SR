@@ -24,6 +24,13 @@
   [position]="{lat: recomendacion['latitude'], lng: recomendacion['longitude']}"
   [label]="{color:'black',text:recomendacion['name']}">
   </map-marker>
+  <map-marker *ngFor="let item of userItems"
+  [position]="{lat: item['latitude'], lng: item['longitude']}"
+  [label]="{color:'black',text:item['name']}"
+  [icon]="{
+    url: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
+  }">
+  </map-marker>
 </google-map>
 
 
@@ -52,6 +59,7 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">{{user["name"]}}</h5>
+        <p class="card-text"><strong>User ID:</strong> {{user["user_id"]}}</p>
         <p class="card-text"><strong>Review count:</strong> {{user["review_count"]}}</p>
         <p class="card-text"><strong>Yelping since:</strong> {{user["yelping_since"]}}</p>
       </div>

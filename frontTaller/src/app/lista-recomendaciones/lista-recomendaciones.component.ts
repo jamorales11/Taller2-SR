@@ -15,6 +15,8 @@ export class ListaRecomendacionesComponent implements OnInit {
 
   usersImportantes : any[] = [];
 
+  userItems: any[] = [];
+
 
   location = {lat:0, lng:0};
   
@@ -34,6 +36,8 @@ export class ListaRecomendacionesComponent implements OnInit {
       this.recomendaciones = JSON.parse(data["recommendaciones"]);
       this.usersImportantes = JSON.parse(data["usuarios"]);
       this.features = data["features"];
+      this.userItems = JSON.parse(data["users_items"]);
+
 
       
       //Para generar el mapa
@@ -64,13 +68,6 @@ export class ListaRecomendacionesComponent implements OnInit {
       let latCenter = (lat_max + lat_min) / 2.0;
       let lngCenter = (lng_max + lng_min) / 2.0;
 
-      console.log(lat_max);
-      console.log(lat_min);
-      console.log(latCenter);
-
-      console.log(lng_max);
-      console.log(lng_min);
-      console.log(lngCenter);
 
 
 
