@@ -18,7 +18,6 @@ def generate_recommendations(df_review, df_reviews_user, df_business, df_non_see
     
     means_user_ratings = df_reviews_user[['user_id', 'review_stars']].groupby('user_id').mean().rename_axis('user_id').reset_index()
     similarity_users = similarity_users.merge(means_user_ratings, on='user_id', how='left')
-    print("sim",similarity_users)
     
     top_sim_user = list(similarity_users['user_id'])
     df_items = df_non_seen_items[df_non_seen_items['user_id'].isin(top_sim_user)][['business_id', 'user_id', 'review_stars']]
@@ -42,7 +41,6 @@ def generate_recommendations(df_review, df_reviews_user, df_business, df_non_see
             ri = ra + num/den
             df_recommendations.loc[df_recommendations['item']==unseen_item, ['prediction']] = ri
     
-    print("List",users)
 
     df_recommendations = df_recommendations.merge(df_business, left_on='item', right_on='business_id', how='left')
     df_recommendations = df_recommendations.sort_values(by='prediction', ascending=False)

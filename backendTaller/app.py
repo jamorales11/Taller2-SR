@@ -84,9 +84,9 @@ def get_recomendaciones(id):
 
     K_rec = 10
     recommendations, imp_feat, imp_user = combine_recommendations(id, K_rec)
-    imp_user = df_users[df_users['user_id'].isin(imp_user)][['name', 'review_count', 'yelping_since']]
+    imp_user = df_users[df_users['user_id'].isin(imp_user)][['user_id', 'name', 'review_count', 'yelping_since']]
 
-    users_items = df_review[df_review['user_id'] == 'I1JMdW0zOvn0r4w3lzJ3YQ'][['name', 'business_id', 'latitude', 'longitude']]
+    users_items = df_review[df_review['user_id'] == id][['name', 'business_id', 'latitude', 'longitude']]
 
     #recommendations = [{"name": "1", "latitude":4.713991455266561, "longitude": -74.0299935}, 
                         #{"name": "2", "latitude":4.705394596794235, "longitude": -74.03334089677242}]
